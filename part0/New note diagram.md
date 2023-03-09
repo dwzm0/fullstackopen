@@ -22,4 +22,3 @@ participant server
     server-->>browser: HTTP status code 302. URL redirect, with which the server asks the browser to do a new HTTP GET. So files are reloaded.
     deactivate server
 
-    Note right of browser: The browser executes the callback function that renders the notes
