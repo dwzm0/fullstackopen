@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 participant browser
 participant server
@@ -16,3 +17,4 @@ participant server
     activate server
     server-->>browser: the JavaScript file. Which have js code, that handels form request instead of default behaviour.
     deactivate server
+```

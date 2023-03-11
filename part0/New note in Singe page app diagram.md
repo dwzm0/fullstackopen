@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 participant browser
 participant server
@@ -21,3 +22,4 @@ participant server
     activate server
     server-->>browser: Status Code 201. Created.
     deactivate server
+ ```
