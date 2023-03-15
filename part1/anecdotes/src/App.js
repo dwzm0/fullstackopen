@@ -45,8 +45,8 @@ const App = () => {
       <Header text="Anecdote of the day" />
       <Anecdote text={anecdotes[selected]} />
       <Votes votes={currentVotes} />
-      <Button handleClick={() => vote()} text="vote please" />
-      <Button handleClick={() => randomSelect()} text="next anecdote" />
+      <Button handleClick={vote} text="vote please" />
+      <Button handleClick={randomSelect} text="next anecdote" />
       <Header text="Anecdote with most votes" />
       <Anecdote text={anecdotes[top]} />
     </div>

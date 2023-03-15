@@ -1,0 +1,7 @@
+.hidder {
+  visibility: hidden;
+}
+
+.makevisible {
+  visibility: visible;
+}
