@@ -3,7 +3,7 @@ import axios from "axios";
 import Filter from "./components/Filter";
 import Form from "./components/PersonForm";
 import Persons from "./components/Persons";
-import Notification from "./components/Notifications";
+import Notification from "./components/Notification";
 import Errormsg from "./components/Errormsg";
 import personsService from "./services/persons";
 
