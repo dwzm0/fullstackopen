@@ -1,7 +1,6 @@
 import Person from "./Person";
 
 const Persons = ({ persons, handleDelete }) => {
-  console.log(persons);
   return (
     <ul>
       {persons.map((person) => (

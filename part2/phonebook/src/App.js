@@ -69,15 +69,23 @@ const App = () => {
       }
     }
 
-    personsService.create(personeObject).then((returnedPersone) => {
-      setPersons(persons.concat(returnedPersone));
-      setNewName("");
-      setNewNumber("");
-    });
-    setMessage(`Added ${personeObject.name}`);
-    setTimeout(() => {
-      setMessage(null);
-    }, 2000);
+    personsService
+      .create(personeObject)
+      .then((returnedPersone) => {
+        setPersons(persons.concat(returnedPersone));
+        setNewName("");
+        setNewNumber("");
+        setMessage(`Added ${personeObject.name}`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
+      })
+      .catch((error) => {
+        setMessage(`${error.response.data.error}`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 10000);
+      });
   };
 
   const handelPersoneChange = (e) => {
