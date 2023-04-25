@@ -1,31 +1,16 @@
-import { useState, useEffect, SyntheticEvent } from "react";
-import {  TextField, Grid, Button, } from '@mui/material';
+import { useState, SyntheticEvent } from "react";
+import {  TextField, Grid, Button, MenuItem, } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
 import Input from '@mui/material/Input';
-import diagnoseService from "../../services/diagnoses"
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { HealthCheckEntryWithoutId, Diagnosis, Patient, NonSensitiveDiagnoseEntry } from "../../types"
+import DiagosesComponent from "./DiagnosesComponent";
+
 
 interface Props {
     onSubmit: (patient: Patient, values: HealthCheckEntryWithoutId) => void;
     patient: Patient,
   }
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 300,
-    },
-  },
-};
-
 
 const AddHealthCheckForm = ({onSubmit, patient }: Props) => {
     const [diagnoses, setDiagnoses] = useState<NonSensitiveDiagnoseEntry[]>([]);
@@ -35,27 +20,10 @@ const AddHealthCheckForm = ({onSubmit, patient }: Props) => {
     const [diagnosisCodes, setDiagnosisCodes] = useState<Diagnosis['code'][]>([])
     const [healthCheckRating, setHealthCheckRating] = useState<number>(0) 
 
-    const handleDiagnosisChange = (event: SelectChangeEvent<typeof diagnosisCodes>) => {
-      const {
-        target: { value },
-      } = event;
-      setDiagnosisCodes(
-        typeof value === 'string' ? value.split(',') : value,
-      );
-    };
-
     const handleRatingChange = (event: SelectChangeEvent) => {
       setHealthCheckRating(Number(event.target.value));
     };
   
-    useEffect(() => {
-      const fetchDiagnoseList = async () => {
-        const diagnoses = await diagnoseService.getAll();
-        setDiagnoses(diagnoses);
-      };
-      void fetchDiagnoseList();
-    }, []);
-
     const addEntry = (event: SyntheticEvent) => {
         event.preventDefault();
         onSubmit(patient, {
@@ -94,24 +62,7 @@ const AddHealthCheckForm = ({onSubmit, patient }: Props) => {
               value={specialist}
               onChange={({ target }) => setSpecialist(target.value)}
             />
-           <InputLabel id="diagnose-multiple-checkbox-label">Select Diagnose Code</InputLabel>
-        <Select
-          sx={{width: 300}}
-          id="diagnose-multiple-checkbox"
-          multiple
-          value={diagnosisCodes}
-          onChange={handleDiagnosisChange}
-          input={<OutlinedInput label="Select Diagnose Code" />}
-          renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
-        >
-          {diagnoses.map((diagnose) => (
-            <MenuItem key={diagnose.code} value={diagnose.code}>
-              <Checkbox checked={diagnosisCodes.indexOf(diagnose.code) > -1} />
-              <ListItemText primary={diagnose.code} />
-            </MenuItem>
-          ))}
-        </Select>
+        <DiagosesComponent diagnoses={diagnoses} setDiagnoses={setDiagnoses} diagnosisCodes={diagnosisCodes} setDiagnosisCodes={setDiagnosisCodes}/>
         <InputLabel id="rating-simple-select-label">Health Rating</InputLabel>
         <Select
           sx={{width: 75}}
@@ -143,7 +94,5 @@ const AddHealthCheckForm = ({onSubmit, patient }: Props) => {
         </div>
       );
 }
-
-
 
 export default AddHealthCheckForm

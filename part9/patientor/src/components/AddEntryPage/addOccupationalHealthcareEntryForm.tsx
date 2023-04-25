@@ -2,17 +2,14 @@ import { useState, SyntheticEvent,  } from "react";
 import {  TextField, Grid, Button, } from '@mui/material';
 import { OccupationalHealthcareEntryWithoutId, Patient, NonSensitiveDiagnoseEntry, Diagnosis} from "../../types"
 import InputLabel from '@mui/material/InputLabel';
-
 import Input from '@mui/material/Input';
-import DiagosesComponent from "../../hooks";
+import DiagosesComponent from "./DiagnosesComponent";
 
 
 interface Props {
     onSubmit: (patient: Patient, values: OccupationalHealthcareEntryWithoutId) => void;
     patient: Patient,
   }
-
-
 
 const AddOccupationalHealthcareEntryForm = ({onSubmit, patient }: Props) => {
     const [diagnoses, setDiagnoses] = useState<NonSensitiveDiagnoseEntry[]>([]);

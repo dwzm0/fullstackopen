@@ -1,6 +1,6 @@
 import {useEffect, Dispatch, SetStateAction } from "react";
-import { NonSensitiveDiagnoseEntry, Diagnosis } from "../types"
-import diagnoseService from "../services/diagnoses"
+import { NonSensitiveDiagnoseEntry, Diagnosis } from "../../types"
+import diagnoseService from "../../services/diagnoses"
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';

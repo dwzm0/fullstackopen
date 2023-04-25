@@ -2,7 +2,7 @@ import { HealthCheckEntry } from "../../types";
 import { useState, useEffect } from "react";
 import { Box, Typography, List, ListItem } from '@mui/material';
 import diagnoseService from "../../services/diagnoses"
-import { NonSensitiveDiagnoseEntry, HealthCheckEntryWithoutId } from "../../types";
+import { NonSensitiveDiagnoseEntry,  } from "../../types";
 import {diagnoseNameParser} from '../../utils'
 
 import LoyaltyIcon from '@mui/icons-material/Loyalty';

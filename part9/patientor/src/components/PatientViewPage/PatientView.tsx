@@ -18,7 +18,7 @@ import AddOccupationalHealthcareEntryForm from "../AddEntryPage/addOccupationalH
 
 
 const PatientView = () => {
-    const [error, setError] = useState<string>();
+    const [error, setError] = useState<string>("");
     const [patient, setPatient] = useState<Patient>();
     const [diagnoses, setDiagnoses] = useState<NonSensitiveDiagnoseEntry[]>([]);
     const [hospitalToggler, setHospitalToggler] = useState(false)
